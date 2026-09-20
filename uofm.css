@@ -1,0 +1,411 @@
+html, body{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.modal-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-overlay.open{
+  display: flex;
+}
+
+.modal-box{
+  position: relative;
+  background: whitesmoke;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+}
+
+.modal-box img{
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 75vh;
+  object-fit: contatin;
+  border-radius: 6px;
+  margin: 0 auto 8px;
+}
+
+.modal-close{
+  position: absolute;
+  top: -14px;
+  right: -14px;
+
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  background: #7A0019;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+
+
+.wrapper{
+  width: 93%;
+  height: 48vw;
+  margin: 0 auto;
+  border: 1px solid gray;
+  background-color: whitesmoke;
+
+  display: grid;
+  grid-template-rows: 1fr 0.5fr 3fr 2fr;
+
+}
+
+
+
+header{
+  padding: 12px 0;
+
+  display: grid;
+  grid-template-columns: .5fr 2fr .5fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "logo title campus"
+    "logo search campus";
+  row-gap: 8px;
+}
+
+.title{
+  grid-area: title;
+  justify-self: center;
+  align-self: center;
+  font-size: 1.5rem;
+}
+
+.logo{
+  grid-area: logo;
+  justify-self: start;
+  align-self: center;
+  margin-left: 24px;
+
+  display: flex;
+  align-items: center;
+}
+
+.logo img{
+  height: 30px;
+  width: auto;
+  display: block;
+}
+
+.campus{
+  grid-area: campus;
+  justify-self: end;
+  align-self: center;
+  margin-right: 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  font-family: Georgia, 'Times New Roman', serif;
+  font-variant: small-caps;
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+  color: #7A0019;
+}
+
+.campus-sub{
+  font-family: Georgia, 'Times New Roman', serif;
+  font-variant: normal;
+  letter-spacing: normal;
+  font-size: 0.85rem;
+  color: #1a1a1a;
+  margin-top: 2px;
+}
+
+.search{
+  grid-area: search;
+  justify-self: center;
+  align-self: center;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search input{
+  font-size: 1rem;
+  padding: 6px 10px;
+  width: 280px;
+}
+
+.search button{
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+.search button.hovered{
+  box-shadow: inset 0 0 0 2px #7A0019, 0 3px 8px rgba(0,0,0,0.15);
+  background-color: rgba(122, 0, 25, 0.05);
+  transition: box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+
+
+nav{
+  padding: 12px 0;
+
+  display: flex;
+  grid-template-columns: center;
+}
+
+.nav-row{
+  border: 3px solid #A9596A;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.nav-item{
+    position: relative;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-item:not(:first-child){
+  border-left: 1px solid #A9596A;
+}
+
+.sub-menu{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    background-color: whitesmoke;
+    border: 1px solid lightgray;
+    padding: 8px 0;
+    white-space: nowrap;
+
+    font-size: 1rem;
+    font-weight: normal;
+
+    display: none;
+}
+
+.sub-menu.open{
+    display: flex;
+}
+
+.nav-item.hovered{
+  box-shadow: inset 0 0 0 2px #7A0019, 0 4px 10px rgba(0,0,0,0.15);
+  background-color: rgba(122, 0, 25, 0.05);
+  transition: box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.sub-menu > div.hovered{
+  box-shadow: inset 0 0 0 2px #7A0019, 0 3px 8px rgba(0,0,0,0.15);
+  background-color: rgba(122, 0, 25, 0.05);
+  transition: box-shadow 0.15s ease, background-color 0.15s ease;
+  padding: 2px 12px;      /* 그림자/배경이 글자에 너무 딱 붙지 않게 여백 조금 */
+  border-radius: 4px;
+}
+
+
+
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+
+main{
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 12px;
+
+}
+
+.imgs{
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.imgs img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+  display: block;
+}
+
+.imgs{
+  cursor: pointer;
+}
+
+.imgs.hovered{
+  box-shadow: inset 0 0 0 3px #7A0019, 0 4px 12px rgba(0,0,0,0.25);
+  transition: box-shadow 0.15s ease;
+}
+
+.imgs.hovered img{
+  transform: scale(1.03);
+  transition: transform 0.15s ease;
+}
+
+
+
+footer{
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid lightgray;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 16px;
+  align-items: center;
+  padding: 12px;
+}
+
+.img{
+  grid-column: 1 / 2;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.img img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.info{
+  grid-column: 2 / 3;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.jeff{
+  width: 80%;
+  height: 80%;
+  border-collapse: collapse;
+  font-size: 0.68rem;
+  table-layout: fixed;
+}
+
+.jeff th,
+.jeff td{
+  border-bottom: 1px solid #ddd;
+  padding: 3px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.jeff th{
+  width: 80px;
+  background-color: #eef3ff;
+  color: #1a1a1a;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.jeff td{
+  color: #333;
+  line-height: 1.2;
+}
+
+.text{
+  grid-column: 3 / 4;
+  height: 100%;
+  min-width:0;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  justify-self: center;
+}
+
+.text .lead{
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #ddd;
+}
+
+.meme h4{
+  margin: 0 0 1px 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.meme p{
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #444;
+}
+
+.img{
+  cursor: pointer;
+}
+
+.img.hovered img{
+  transform: scale(1.03);
+  transition: transform 0.15s ease;
+}
